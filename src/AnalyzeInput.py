@@ -1,7 +1,11 @@
+import Inventory
 import Objects
-#Seth Doubek 3/8/18
+
+inventory = Inventory.Inventory()
+
+#-Seth Doubek 3/8/18
 class AnalyzeInput(object):
-    currentLocation = "Starting place"
+    currentLocation = "Your Mansion"
 
     def __init__(self, userTyped):
         self.text = str.lower(userTyped)
@@ -36,9 +40,10 @@ class AnalyzeInput(object):
             currentLocation = ''
             if otherWord == ['the', 'courtyard'] or otherWord == ['to', 'the', 'courtyard']:
                 suffix = " to the courtyard, good luck!"
-                AnalyzeInput.currentLocation = 'courtyard'
+                
+                AnalyzeInput.currentLocation = 'the courtyard'
             else:
-                suffix = "an incorrect place, try again"
+                suffix = " an incorrect place, try again."
 
         #Location
         elif keyword == 'location':
@@ -71,7 +76,35 @@ class AnalyzeInput(object):
                 examinedObject.displaySwordOfOof
             else:
                 suffix = 'you entered an incorrect item'
-        
+
+        #GJ
+        #Talk
+        elif keyword == 'talk':
+          prefix = 'you talk to '
+          otherWord = sentence[1:]
+          suffix = ''
+          #NPCS
+          if otherWord == ['to','the', 'old',  'man']:
+            suffix = 'the old man, he says...'
+          else:
+            prefix = "you used an incorrect format or talked to something you can't, please try again."
+        #GJ
+        #Inventory
+        elif keyword == 'inventory':
+          inventory.addItem(Inventory.Item('Sword', '9', '2', '4', 'Iron'))
+          inventory.addItem(Inventory.Item('Head', '0', '8', '6', 'Iron'))
+          
+          otherWord = sentence[0]
+          prefix = 'You check your inventory.'
+          suffix = ' You find these! '
+          inventory.printItems()
+        #GJ 
+        #Collect
+        elif keyword == 'collect':
+          inventory.addItem(Inventory.Item('Rock', '4', '0', '4', 'Rock'))
+          prefix = 'you collected a rock'
+          suffix = ''
+          
         #They Goofed         
         else:
             prefix = "You used an incorrect keyword"
@@ -79,3 +112,4 @@ class AnalyzeInput(object):
             
         #Objects
         print(prefix + suffix)
+
