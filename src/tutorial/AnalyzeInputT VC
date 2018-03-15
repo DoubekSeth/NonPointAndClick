@@ -1,0 +1,143 @@
+import Objects
+#VC TUTORIAL 3/15/18
+class AnalyzeInput(object):
+    currentLocation = "Tutorial area"
+
+    def __init__(self, userTyped):
+        self.text = str.lower(userTyped)
+    
+    #This puts the sentence into a list of words
+    def analyzeText(self):
+        startWord = 0
+        endWord = 0
+        sentence = []
+        for var in range(len(self.text)):
+            letterList = self.text[var]
+            spacePlace = letterList.count(' ')
+            if spacePlace == 0:
+                endWord += 1
+            else:
+                sentence.append(self.text[startWord:endWord])
+                startWord = endWord + 1
+                endWord += 1
+        sentence.append(self.text[startWord:endWord])
+        
+        #This detects the first word
+        keyword = sentence[0]
+        prefix = ''
+        
+        #Travel
+        if keyword == 'travel':
+            prefix = "You are traveling to"
+            otherWord = sentence[1:]
+            suffix = ''
+            #Locations
+            #The Courtyard
+            currentLocation = ''
+            if otherWord == ['the', 'courtyard'] or otherWord == ['to', 'the', 'courtyard']:
+                suffix = " to the courtyard, good luck!"
+                AnalyzeInput.currentLocation = 'courtyard'
+                print("You enter the courtyard. The settings peaceful with a cobblestone")
+                print("walkway and a fountain in the middle. A sword falls on your head")
+                print("and you say 'oif' you pick the sword. A training dummy sits ominously in the corner.")
+                print("How convenient... :D lets practice attacking")
+                print(" use the keyword 'attack' plus your target.")
+            else:
+                suffix = "an incorrect place, try again"
+
+        #Location
+        elif keyword == 'location':
+            prefix = "You are currently in "
+            otherWord = sentence[1:]
+            suffix = ''
+            suffix = AnalyzeInput.currentLocation
+            print(prefix + suffix)
+            print("Great work young padawan!")
+            print("now that you know where you are, lets work on moving yourself.")
+            print("enter teh keyword 'travel' plus the location you want to go.")
+            print("lets go to the courtyard")
+                 
+
+            
+            
+        #Attack
+        elif keyword == 'attack':
+            prefix = "You are attacking "
+            otherWord = sentence[1:]
+            suffix = ''
+            #NPCS
+            if otherWord == ['the', 'old',  'man'] or otherWord == ['the','training', 'dummy']:
+                suffix = " the old man, RIP"
+                print("You beat hte shit out of the training dummy.")
+                print("your repressed memories of your horrible childhood falsh across your vision.")
+                print("Suddenly a portal appears above the fountain")
+                print("You are ready to start the game.")
+                print("travel to the portal and begin your adventure!!!!!!!!!!!!!!! :D")
+            else:
+                suffix = "an incorrect entity, try again"
+
+        #Examine
+        elif keyword == 'examine':
+            prefix = ''
+            otherWord = sentence[1:]
+            suffix = ''
+            #Items
+            if otherWord == ['sword', 'of', 'oof'] or otherWord == ['the', 'sword', 'of', 'oof']:
+                name = 'sword of oof'
+                examinedObject = Objects.Objects(name, keyword)
+                examinedObject.displaySwordOfOof
+            else:
+                suffix = 'you entered an incorrect item'
+        #VC
+        elif keyword == 'Start' or keyword =='start':
+             prefix = ''
+             suffix = ''
+             print("Welcome to the world of Non point and click.")
+             print("Before you start your adventure lets get down the basics.")
+             print("The world of is a vast land, filled with many magics and fantastic creatures.")
+             print("lets work on finding your location. Enter 'location' to find yourself on the map.")
+
+
+                    #They Goofed         
+        else:
+            prefix = "You used an incorrect keyword"
+            suffix = ", Try again"
+            
+    
+
+
+
+print(" _______________________________________________")
+print("|                                               |")
+print("|                NON POINT AND CLIK             |")
+print("|              ─────────▄──────────────▄        |")
+print("|              ────────▌▒█───────────▄▀▒▌       |")
+print("|              ────────▌▒▒▀▄───────▄▀▒▒▒▐        |")
+print("|              ───────▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐        |")
+print("|              ─────▄▄▀▒▒▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐         |")
+print("|              ───▄▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀██▀▒▌         |")
+print("|              ──▐▒▒▒▄▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▀▄▒▒▌         |")
+print("|              ──▌▒▒▐▄█▀▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐        |")
+print("|              ─▐▒▒▒▒▒▒▒▒▒▒▒▌██▀▒▒▒▒▒▒▒▒▀▄▌        |")
+print("|              ─▌▒▀▄██▄▒▒▒▒▒▒▒▒▒▒▒░░░░▒▒▒▒▌       |")
+print("|              ─▌▀▐▄█▄█▌▄▒▀▒▒▒▒▒▒░░░░░░▒▒▒▐      |")
+print("|               ▐▒▀▐▀▐▀▒▒▄▄▒▄▒▒▒▒▒░░░░░░▒▒▒▒▌     |")
+print("|               ▐▒▒▒▀▀▄▄▒▒▒▄▒▒▒▒▒▒░░░░░░▒▒▒▐      |")
+print("|              ─▌▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒▒▒░░░░▒▒▒▒▌       |")
+print("|              ─▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▐         |")
+print("|              ──▀▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▒▒▒▒▌        |")
+print("|              ───▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀         |")
+print("|              ───▐▀▒▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀         |")
+print("|              ──▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▀              |")
+print("|                                              |")
+print("|                                              |")
+print("|                                              |")
+print("|            __________________________        |")
+print("|           |                          |       |")
+print("|           |      Enter 'Start'       |       |")
+print("|           |        to begin          |       |")
+print("|           |          Game            |       |")
+print("|            --------------------------        |")
+print("|______________________________________________|")
+
+
