@@ -5,6 +5,7 @@ class Item(object):
         self.armor = armor
         self.weight = weight
         self.level = level
+        
 
 class Inventory(object):
     def __init__(self):
@@ -16,9 +17,4 @@ class Inventory(object):
     def printItems(self):
         print('\t'.join(['Name', 'Attack', 'Armor', 'Weight', 'Level']))
         for item in self.backpack.values():
-            print('\t'.join([str(x) for x in [item.name, item.attack, item.armor, item.weight, item.level]]))
-
-inventory = Inventory()
-inventory.addItem(Item('Sword', 9, 2, 4, 'Iron'))
-inventory.addItem(Item('Armor', 0, 8, 6, 'Iron'))
-inventory.printItems()
+            print('\t'.join([item.name, item.attack, item.armor, item.weight, item.level]))
