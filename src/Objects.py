@@ -10,7 +10,7 @@ class Objects(object):
     def displaySwordOfOof(self):
         print(                    )
         print(                    )
-        print(                    )
+        print( "        /\   "     )
         print( "       /  \  "    )
         print( "      |    | "    )
         print( "      |    | "    )
