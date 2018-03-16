@@ -3,13 +3,14 @@ import Objects
 
 inventory = Inventory.Inventory()
 
-#-Seth Doubek 3/8/18
+#Seth Doubek
 class AnalyzeInput(object):
     currentLocation = "Your Mansion"
 
     def __init__(self, userTyped):
         self.text = str.lower(userTyped)
-    
+
+    #SD
     #This puts the sentence into a list of words
     def analyzeText(self):
         startWord = 0
@@ -26,10 +27,12 @@ class AnalyzeInput(object):
                 endWord += 1
         sentence.append(self.text[startWord:endWord])
         
+        #SD
         #This detects the first word
         keyword = sentence[0]
         prefix = ''
-        
+
+        #SD
         #Travel
         if keyword == 'travel':
             prefix = "You are traveling to"
@@ -45,6 +48,7 @@ class AnalyzeInput(object):
             else:
                 suffix = " an incorrect place, try again."
 
+        #SD
         #Location
         elif keyword == 'location':
             prefix = "You are currently in "
@@ -52,7 +56,7 @@ class AnalyzeInput(object):
             suffix = ''
             suffix = AnalyzeInput.currentLocation
             
-            
+        #SD           
         #Attack
         elif keyword == 'attack':
             prefix = "You are attacking "
@@ -63,19 +67,19 @@ class AnalyzeInput(object):
                 suffix = " the old man, RIP"
             else:
                 suffix = "an incorrect entity, try again"
-
+        #SD
         #Examine
         elif keyword == 'examine':
             prefix = ''
             otherWord = sentence[1:]
             suffix = ''
             #Items
-            if otherWord == ['sword', 'of', 'oof'] or otherWord == ['the', 'sword', 'of', 'oof']:
+            if otherWord == ['sword', 'of', 'oof'] or otherWord == ['the', 'sword', 'of', 'oof'] and inventory.backpack.keys().find('Sword Of Oof') != -1:
                 name = 'sword of oof'
-                examinedObject = Objects.Objects(name, keyword)
-                examinedObject.displaySwordOfOof
+                swordOfOof = Objects.Objects('a great sword', name, keyword, 'true', 10, 0)
+                swordOfOof.displaySwordOfOof()
             else:
-                suffix = 'you entered an incorrect item'
+                suffix = 'you entered an incorrect item or tried to examine an item you do not have'
 
         #GJ
         #Talk
@@ -88,6 +92,7 @@ class AnalyzeInput(object):
             suffix = 'the old man, he says...'
           else:
             prefix = "you used an incorrect format or talked to something you can't, please try again."
+            
         #GJ
         #Inventory
         elif keyword == 'inventory':
@@ -98,18 +103,28 @@ class AnalyzeInput(object):
           prefix = 'You check your inventory.'
           suffix = ' You find these! '
           inventory.printItems()
+          
         #GJ 
         #Collect
         elif keyword == 'collect':
-          inventory.addItem(Inventory.Item('Rock', '4', '0', '4', 'Rock'))
-          prefix = 'you collected a rock'
-          suffix = ''
+            prefix = 'you collected'
+            otherWord = sentence[1:]
+            suffix = ''
+            #Quick Guide: inventory.addItem(Inventory.Item(name, attack, armor, weight, level))
+            #Rock
+            if otherWord == ['a', 'rock'] or otherWord == ['rock'] or otherWord == ['the', 'rock']:
+                inventory.addItem(Inventory.Item('Rock', '4', '0', '4', 'Rock'))
+                suffix = ' a rock'
+            #Sword Of Oof
+            elif otherWord == ['sword', 'of', 'oof'] or otherWord == ['the', 'sword', 'of', 'oof']:
+                inventory.addItem(Inventory.Item('Sword Of Oof', '100', '0', '7', 'Oof'))
+                suffix = ' the sword of oof'
+            else:
+                suffix = ' an entity that does not exist, try again'
           
         #They Goofed         
         else:
             prefix = "You used an incorrect keyword"
             suffix = ", Try again"
-            
-        #Objects
+        
         print(prefix + suffix)
-

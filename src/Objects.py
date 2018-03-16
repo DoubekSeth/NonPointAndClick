@@ -1,12 +1,16 @@
+#SD
 class Objects(object):
     
-    def __init__(self, name, keyword):
+    def __init__(self, description, name, keyword, inInventory, attackModifier, healthModifier):
+        description = description
         name = str.lower(name)
         keyword = keyword
+        inInventory = inInventory
+        attackModifier = attackModifier
+        healthModifier = healthModifier
 
     #Images
     #Sword of Oof
-
     def displaySwordOfOof(self):
         print(                    )
         print(                    )
@@ -31,4 +35,5 @@ class Objects(object):
         print( "        ()    "   )
         print( "        ()    "   )
         print( "       (  ) "     )
+        print( "       (  ) "       )
         

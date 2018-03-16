@@ -1,0 +1,21 @@
+#GJ
+class Item(object):
+    def __init__(self, name, attack, armor, weight, level):
+        self.name = name
+        self.attack = attack
+        self.armor = armor
+        self.weight = weight
+        self.level = level
+        
+
+class Inventory(object):
+    def __init__(self):
+        self.backpack = {}
+
+    def addItem(self, item):
+        self.backpack[item.name] = item
+
+    def printItems(self):
+        print('\t'.join(['Name', 'Attack', 'Armor', 'Weight', 'Level']))
+        for item in self.backpack.values():
+            print('\t'.join([item.name, item.attack, item.armor, item.weight, item.level]))
