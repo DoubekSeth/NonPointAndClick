@@ -1,6 +1,6 @@
 ## All the research that we are currently doing
 Current Research:
-- Dictionaries
+- Lists and how to recursively print along those lists, GJ 
 - String formatting operator (%)
 - Class variable calling and priority
 
