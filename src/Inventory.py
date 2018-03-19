@@ -16,6 +16,6 @@ class Inventory(object):
         self.backpack[item.name] = item
 
     def printItems(self):
-        print('\t'.join(['Name', 'Attack', 'Armor', 'Weight', 'Level']))
+        print('\t'.join(['Name    ', 'Attack', 'Armor', 'Weight', 'Level']))
         for item in self.backpack.values():
-            print('\t'.join([item.name, item.attack, item.armor, item.weight, item.level]))
+                print(item.name + '    ' + '\t'.join([item.attack, item.armor, item.weight, item.level]) )
