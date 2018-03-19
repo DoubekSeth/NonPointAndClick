@@ -1,6 +1,20 @@
 #ASCII ART
 - this is what will appear when the keyword 'examine' is used
 - a description of the item will be printed under the image
+# Chest VC
+
+print("                    ._______________________________. ")
+print("                    ::                             ::")
+print("                    ::                             ::")
+print("                    ::                             ::")
+print("                    ::            _____            :: ")
+print("                    ::===========:  0   : =========::")        
+print("                    |  _________  | : |  __________ |")
+print("                    |    ________  \ /  __________  |")
+print("                    | ___________________________   |")
+print("                    |     ____________________      |")
+print("                    |===============================|")
+
 
 # Sword VC
 
