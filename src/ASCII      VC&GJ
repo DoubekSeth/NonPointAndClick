@@ -2,7 +2,7 @@
 - this is what will appear when the keyword 'examine' is used
 - a description of the item will be printed under the image
 
-# Sword
+# Sword VC
 
 print(                    ) 
 print(                    )
@@ -31,7 +31,7 @@ print( "       (  ) "       )
 print( "sword called "oof"")
 print("")
 
-#Sign Post
+#Sign Post VC
 
 print(                                     )
 print(                                     )
@@ -54,7 +54,7 @@ print( "")
 -super versatile cuz you can put whatever you want 
 - interact with 'read' keyword or examine keyword
 
-#homescreen
+#homescreen VC
 
 print(" _______________________________________________")
 print("|                                               |")
