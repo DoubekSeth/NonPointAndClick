@@ -1,4 +1,4 @@
-#SD
+#SD & GJ
 class Objects(object):
     
     def __init__(self, description, name, keyword, inInventory, attackModifier, healthModifier):
@@ -35,5 +35,5 @@ class Objects(object):
         print( "        ()    "   )
         print( "        ()    "   )
         print( "       (  ) "     )
-        print( "       (  ) "       )
+
         
