@@ -17,6 +17,7 @@ class Inventory(object):
 
     def printItems(self):
         #SD, Stole this off of stack overflow, link: https://stackoverflow.com/questions/39032720/formatting-lists-into-columns-of-a-table-output-python-3
+        #I believe it's the second answer as of 3/20/18
         names = []
         attacks = []
         armors = []
