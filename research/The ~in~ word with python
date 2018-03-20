@@ -1,0 +1,4 @@
+You can use this to see if there is something in a certain list/dictionary/tuple
+will return true if it is the list, else it will return false
+ex: if dagger in inventory.backpack:
+  print("you have a dagger")
