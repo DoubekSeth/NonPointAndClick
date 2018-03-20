@@ -1,2 +1,2 @@
 ### Problems
-Are we going to use images or objects as our primary source for the images
+Are we using objects still as our directory for ASCII art or the ASCII file
