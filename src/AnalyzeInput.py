@@ -42,9 +42,8 @@ class AnalyzeInput(object):
             #The Courtyard
             currentLocation = ''
             if otherWord == ['the', 'courtyard'] or otherWord == ['to', 'the', 'courtyard']:
-                suffix = " to the courtyard, good luck!"
-                
-                AnalyzeInput.currentLocation = 'the courtyard'
+                suffix = " to the courtyard.\n there is an old man and the sword of oof"
+                AnalyzeInput.currentLocation = 'courtyard'
             else:
                 suffix = " an incorrect place, try again."
 
@@ -74,7 +73,7 @@ class AnalyzeInput(object):
             otherWord = sentence[1:]
             suffix = ''
             #Items
-            if otherWord == ['sword', 'of', 'oof'] or otherWord == ['the', 'sword', 'of', 'oof'] and inventory.backpack.keys().find('Sword Of Oof') != -1:
+            if otherWord == ['sword', 'of', 'oof'] or otherWord == ['the', 'sword', 'of', 'oof'] and 'Sword Of Oof' in inventory.backpack:
                 name = 'sword of oof'
                 swordOfOof = Objects.Objects('a great sword', name, keyword, 'true', 10, 0)
                 swordOfOof.displaySwordOfOof()
@@ -88,7 +87,7 @@ class AnalyzeInput(object):
           otherWord = sentence[1:]
           suffix = ''
           #NPCS
-          if otherWord == ['to','the', 'old',  'man']:
+          if otherWord == ['to','the', 'old',  'man'] and AnalyzeInput.currentLocation == 'courtyard':
             suffix = 'the old man, he says...'
           else:
             prefix = "you used an incorrect format or talked to something you can't, please try again."
@@ -116,13 +115,26 @@ class AnalyzeInput(object):
                 inventory.addItem(Inventory.Item('Rock', '4', '0', '4', 'Rock'))
                 suffix = ' a rock'
             #Sword Of Oof
-            elif otherWord == ['sword', 'of', 'oof'] or otherWord == ['the', 'sword', 'of', 'oof']:
+            elif otherWord == ['sword', 'of', 'oof'] or otherWord == ['the', 'sword', 'of', 'oof'] and AnalyzeInput.currentLocation == 'courtyard':
                 inventory.addItem(Inventory.Item('Sword Of Oof', '100', '0', '7', 'Oof'))
                 suffix = ' the sword of oof'
             else:
-                suffix = ' an entity that does not exist, try again'
-          
-        #They Goofed         
+                suffix = ' an entity that does not exist or is in another location, try again'
+        #SD
+        #Help
+        elif keyword == 'help':
+            prefix = 'You have just been'
+            otherWord = sentence[1:]
+            suffix = ' filled in'
+            print("Travel - Is used to travel to a new location")
+            print("Location - Displays the current location and any other detail")
+            print("Attack - Is used to attack a person")
+            print("Examine - Displays an item, location, or person")
+            print("Talk - Is used to talk to people")
+            print("Inventory - Checks your current inventory")
+            print("Collect - Picks up an item in the world")
+            print("Remeber not to put anything before these key words, and try the objects complete noun when doing something")
+        #They Goofed        
         else:
             prefix = "You used an incorrect keyword"
             suffix = ", Try again"
