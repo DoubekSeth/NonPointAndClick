@@ -45,6 +45,31 @@ print( "       (  ) "       )
 print( "sword called "oof"")
 print("")
 
+
+#Shield
+
+print("")
+print("          _________________________________   ")
+print("         |  _____________________________  |   ")
+print("         | |                             | |  ")
+print("         | |                             | | ")
+print("         | |                             | | ")
+print("         | |                             | | ")
+print("          | |                           | |  ")
+print("           | |                         | | ")
+print("            | |                       | |  ")
+print("             | |                     | |  ")
+print("              | |                   | |  ")
+print("               | |                 | |  ")
+print("                | |               | |  ")
+print("                 | |             | |  ")
+print("                  | |           | |  ")
+print("                   | |         | |  ")
+print("                    | |       | |  ")
+print("                     | |     | |  ")
+print("                      | |   | |  ")
+print("                       | | | |  ")
+
 #Sign Post VC
 
 print(                                     )
