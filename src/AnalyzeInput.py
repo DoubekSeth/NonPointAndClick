@@ -68,7 +68,8 @@ class AnalyzeInput(object):
             otherWord = sentence[1:]
             suffix = ''
             #NPCS
-            if otherWord == ['the', 'old',  'man']:
+            oldMan = 1
+            if otherWord == ['the', 'old',  'man'] and oldMan == 1:
                 suffix = " the old man, RIP"
                 enemyStrength = 2
                 enemyHealth = 10
@@ -76,6 +77,7 @@ class AnalyzeInput(object):
                     enemyHealth = enemyHealth - AnalyzeInput.playerStrength
                     AnalyzeInput.playerHealth = AnalyzeInput.playerHealth - enemyStrength
                 print("Current health: " + str(AnalyzeInput.playerHealth))
+                oldMan = 0
             else:
                 suffix = "an incorrect entity, try again"
         #SD
@@ -99,18 +101,25 @@ class AnalyzeInput(object):
             otherWord = sentence[1:]
             suffix = ''
             #NPCS
-            if otherWord == ['to','the', 'old',  'man'] and AnalyzeInput.currentLocation == 'courtyard':
+            if otherWord == ['to','the', 'old','man'] and AnalyzeInput.currentLocation == 'courtyard':
                suffix = 'the old man, he says...'
             
-            elif otherWord == ['to','the','professor'] or ['the','professor'] or ['professor'] and AnalyzeInput.currentLocation == 'academy of alchemy':
+            elif otherWord == ['to','the','professor'] or otherWord == ['the','professor'] or otherWord == ['professor'] and AnalyzeInput.currentLocation == 'academy of alchemy':
                 print("Why hello there boy, are you here to learn about the magical world of Alchemy?")
-                time.sleep(1)
-                print("Of course you are, why else would you be here.")
-                time.sleep(1)
+                time.sleep(3)
+                print("Of course you do, why else would you be here.")
+                time.sleep(3)
                 print("The world of alchemy is based around equivalent exchange, everything in the world is made up of matter.")
-                time.sleep(1)
-                print("We alchemists rearrange and reorganize this matter to change what it is fundamentally made of.")
+                time.sleep(3)
+                print("We alchemists rearrange this matter to change what it is fundamentally made of.")
+                time.sleep(3)
+                print("Simply using the command 'transmute' on a pile of covalent dust will turn it into whatever you want")
+                time.sleep(3)
+                print("Try it now, transmute this dust into a rock")
+                inventory.addItem(Inventory.Item('dust', 0, 0, 2, 'other'))
+                print("Simply type: 'transmute into a rock'")
                 suffix = ''
+                
             else:
               prefix = "you used an incorrect format or talked to something you can't, please try again."
             
@@ -156,6 +165,17 @@ class AnalyzeInput(object):
             print("Inventory - Checks your current inventory")
             print("Collect - Picks up an item in the world")
             print("Remeber not to put anything before these key words, and try the objects complete noun when doing something")
+
+        #SD
+        #Transmute
+        elif keyword == 'transmute':
+            prefix = 'You just transmuted'
+            otherWord = sentence[1:]
+            suffix = ''
+            if otherWord == ['into', 'a', 'rock'] or ['into', 'rock'] or ['a','rock'] or ['rock']:
+                weight = 2
+                inventory.backpack.item.dust.weight = inventory.backpack.item.dust.weight - weight
+                print(inventory.backpack.item.dust.weight)
         #They Goofed        
         else:
             prefix = "You used an incorrect keyword"
