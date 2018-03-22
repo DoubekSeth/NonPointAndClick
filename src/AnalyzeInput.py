@@ -104,12 +104,12 @@ class AnalyzeInput(object):
             
             elif otherWord == ['to','the','professor'] or ['the','professor'] or ['professor'] and AnalyzeInput.currentLocation == 'academy of alchemy':
                 print("Why hello there boy, are you here to learn about the magical world of Alchemy?")
-                time.sleep(2)
-                print("Of course you are, why else would you be here")
                 time.sleep(1)
-                print("The world of alchemy is based around equivalent exchange, everything in the world is made up of matter")
-                time.sleep(2.5)
-                print("We alchemists rearrange and reorganize this matter to change what is fundamentally made of")
+                print("Of course you are, why else would you be here.")
+                time.sleep(1)
+                print("The world of alchemy is based around equivalent exchange, everything in the world is made up of matter.")
+                time.sleep(1)
+                print("We alchemists rearrange and reorganize this matter to change what it is fundamentally made of.")
                 suffix = ''
             else:
               prefix = "you used an incorrect format or talked to something you can't, please try again."
