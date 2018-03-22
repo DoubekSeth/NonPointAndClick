@@ -1,11 +1,14 @@
 import Inventory
 import Objects
+import time
 
 inventory = Inventory.Inventory()
 
 #Seth Doubek
 class AnalyzeInput(object):
     currentLocation = "Your Mansion"
+    playerStrength = 5
+    playerHealth = 20
 
     def __init__(self, userTyped):
         self.text = str.lower(userTyped)
@@ -42,8 +45,11 @@ class AnalyzeInput(object):
             #The Courtyard
             currentLocation = ''
             if otherWord == ['the', 'courtyard'] or otherWord == ['to', 'the', 'courtyard']:
-                suffix = " to the courtyard.\n there is an old man and the sword of oof"
+                suffix = " to the courtyard.\nThere is an old man and the sword of oof"
                 AnalyzeInput.currentLocation = 'courtyard'
+            elif otherWord == ['to', 'the', 'academy', 'of', 'alchemy'] or otherWord == ['to', 'academy', 'of', 'alchemy'] or otherWord == ['to', 'the', 'academy', 'of', 'alchemy'] or otherWord == ['academy', 'of', 'alchemy']:
+                suffix = " to the Academy of Alchemy.\nThere you see a student, and the professor."
+                AnalyzeInput.currentLocation = 'academy of alchemy'
             else:
                 suffix = " an incorrect place, try again."
 
@@ -58,12 +64,18 @@ class AnalyzeInput(object):
         #SD           
         #Attack
         elif keyword == 'attack':
-            prefix = "You are attacking "
+            prefix = "You have killed "
             otherWord = sentence[1:]
             suffix = ''
             #NPCS
             if otherWord == ['the', 'old',  'man']:
                 suffix = " the old man, RIP"
+                enemyStrength = 2
+                enemyHealth = 10
+                while AnalyzeInput.playerHealth > 0 and enemyHealth > 0:
+                    enemyHealth = enemyHealth - AnalyzeInput.playerStrength
+                    AnalyzeInput.playerHealth = AnalyzeInput.playerHealth - enemyStrength
+                print("Current health: " + str(AnalyzeInput.playerHealth))
             else:
                 suffix = "an incorrect entity, try again"
         #SD
@@ -83,14 +95,24 @@ class AnalyzeInput(object):
         #GJ
         #Talk
         elif keyword == 'talk':
-          prefix = 'you talk to '
-          otherWord = sentence[1:]
-          suffix = ''
-          #NPCS
-          if otherWord == ['to','the', 'old',  'man'] and AnalyzeInput.currentLocation == 'courtyard':
-            suffix = 'the old man, he says...'
-          else:
-            prefix = "you used an incorrect format or talked to something you can't, please try again."
+            prefix = ''
+            otherWord = sentence[1:]
+            suffix = ''
+            #NPCS
+            if otherWord == ['to','the', 'old',  'man'] and AnalyzeInput.currentLocation == 'courtyard':
+               suffix = 'the old man, he says...'
+            
+            elif otherWord == ['to','the','professor'] or ['the','professor'] or ['professor'] and AnalyzeInput.currentLocation == 'academy of alchemy':
+                print("Why hello there boy, are you here to learn about the magical world of Alchemy?")
+                time.sleep(2)
+                print("Of course you are, why else would you be here")
+                time.sleep(1)
+                print("The world of alchemy is based around equivalent exchange, everything in the world is made up of matter")
+                time.sleep(2.5)
+                print("We alchemists rearrange and reorganize this matter to change what is fundamentally made of")
+                suffix = ''
+            else:
+              prefix = "you used an incorrect format or talked to something you can't, please try again."
             
         #GJ
         #Inventory
