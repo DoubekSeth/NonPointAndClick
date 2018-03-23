@@ -17,7 +17,18 @@ def specializationChooser():
         else:
             specializationChooser()
 specialaztionChooser()
-'''
+specialaztionChooser():
+    specialization = input("Would you like to an alchemist, Rogue, or xxxx: ")
+    str.lower(specialization)
+    if specialization == 'Rogue':
+        print("Rogues are and clever, and sly, specializing in the art of stealth and deception.\nAre you sure you want to be a Rogue?")")
+        choice = str.lower(input("Yes/No: "))
+        if choice == 'yes':
+            specialization = 'Rogue'
+            print("You begin your adventure, travel to the high security prison.")
+        else:
+           specializationChooser()
+           '''
 
 #SD
 #This makes it run the analyze keyword after each sentence typed
