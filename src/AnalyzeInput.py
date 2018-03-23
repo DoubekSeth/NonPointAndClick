@@ -49,6 +49,9 @@ class AnalyzeInput(object):
             if otherWord == ['the', 'courtyard'] or otherWord == ['to', 'the', 'courtyard']:
                 suffix = " to the courtyard.\nThere is an old man and the sword of oof"
                 AnalyzeInput.currentLocation = 'courtyard'
+
+            #Alchemy
+            #The Academy of Alchemy
             elif otherWord == ['to', 'the', 'academy', 'of', 'alchemy'] or otherWord == ['to', 'academy', 'of', 'alchemy'] or otherWord == ['to', 'the', 'academy', 'of', 'alchemy'] or otherWord == ['academy', 'of', 'alchemy']:
                 suffix = " to the Academy of Alchemy.\nThere you see a student, and the professor."
                 AnalyzeInput.currentLocation = 'academy of alchemy'
@@ -92,7 +95,7 @@ class AnalyzeInput(object):
             #Items
             if otherWord == ['sword', 'of', 'oof'] or otherWord == ['the', 'sword', 'of', 'oof'] and 'Sword Of Oof' in inventory.backpack:
                 name = 'sword of oof'
-                swordOfOof = Objects.Objects('a great sword', name, keyword, 'true', 10, 0)
+                swordOfOof = Objects.Objects()
                 swordOfOof.displaySwordOfOof()
             else:
                 suffix = 'you entered an incorrect item or tried to examine an item you do not have'
@@ -107,6 +110,8 @@ class AnalyzeInput(object):
             #The old man
             if otherWord == ['to','the', 'old','man'] or otherWord == ['test'] and AnalyzeInput.currentLocation == 'courtyard':
                suffix = 'the old man, he says...'
+
+            #Alchemy 
             #SD
             #The Professor of Alchemy
             elif otherWord == ['the', 'professor'] or otherWord == ['professor'] or otherWord == ['to','the','professor'] and AnalyzeInput.currentLocation == 'academy of alchemy' and AnalyzeInput.specialization == 'alchemist':
@@ -180,9 +185,9 @@ class AnalyzeInput(object):
         #SD
         #Help
         elif keyword == 'help':
-            prefix = 'You have just been'
+            prefix = 'There are more class specific commands, '
             otherWord = sentence[1:]
-            suffix = ' filled in'
+            suffix = 'go back and talk to the people to figure these out'
             print("Travel - Is used to travel to a new location")
             print("Location - Displays the current location and any other detail")
             print("Attack - Is used to attack a person")
@@ -207,6 +212,19 @@ class AnalyzeInput(object):
                     print("You current have " + str(AnalyzeInput.dust) + " grams of dust left")
                     inventory.addItem(Inventory.Item('Rock', '4', '0', '4', 'Rock'))
                 suffix = 'a rock'
+
+        #SD
+        #Codex
+        elif keyword == 'codex' and AnalyzeInput.specialization == 'alchemist':
+            prefix = 'page '
+            otherWord = sentence[1:]
+            suffix = ''
+            if otherWord == ['materials']:
+                materials = Objects.Objects()
+                materials.displayCodexMaterials()
+                suffix = '1'
+                
+                
 
                 
         #They Goofed        

@@ -1,13 +1,6 @@
 #SD & GJ
 class Objects(object):
     
-    def __init__(self, description, name, keyword, inInventory, attackModifier, healthModifier):
-        description = description
-        name = str.lower(name)
-        keyword = keyword
-        inInventory = inInventory
-        attackModifier = attackModifier
-        healthModifier = healthModifier
 
     #Images
     #Sword of Oof
@@ -35,3 +28,27 @@ class Objects(object):
         print( "        ()    "   )
         print( "        ()    "   )
         print( "       (  ) "     )
+
+    def displayCodexMaterials(self):
+        print(":-------------------------|")
+        print(":        Materials        |")
+        print(":       ~~~~~~~~~~~       |")
+        print(":                         |")
+        print(":        Ratio 1:1        |")
+        print(": Iron: 25g     Dust: 25g |")
+        print(": Iron: 1000g Dust: 1000g |")
+        print(": Iron: 5000g Dust: 5000g |")
+        print(":                         |")
+        print(":                         |")
+        print(":                         |")
+        print(":                         |")
+        print(":                         |")
+        print(":                         |")
+        print(":                         |")
+        print(":                         |")
+        print(":                         |")
+        print(":                         |")
+        print(":                         |")
+        print(":                         |")
+        print(":                         |")
+        print(":-------------------------|")
