@@ -49,6 +49,12 @@ class AnalyzeInput(object):
             if otherWord == ['the', 'courtyard'] or otherWord == ['to', 'the', 'courtyard']:
                 suffix = " to the courtyard.\nThere is an old man and the sword of oof"
                 AnalyzeInput.currentLocation = 'courtyard'
+            #VC
+            #High Security prison
+            elif otherWord == ['the', 'high', 'security', 'prison'] or otherWord == ['high', 'security', 'prison']:
+                suffix = " to the high security prison. You are imprisoned becasuse you were caught stealing from high ranking nobles You are due to stand trial tommorow where you will most likely be found guilty and be excuted. /n You are currently languishing in your cell. There is a guard outside the door while your cell is completely bare."
+                AnalyzeInput.currentLocation = 'high security prison'
+                AnalyzeInput.specialization = 'Rogue'
 
             #Alchemy
             #The Academy of Alchemy
@@ -58,6 +64,8 @@ class AnalyzeInput(object):
                 AnalyzeInput.specialization = 'alchemist'
             else:
                 suffix = " an incorrect place, try again."
+
+        
 
         #SD
         #Location
@@ -110,6 +118,15 @@ class AnalyzeInput(object):
             #The old man
             if otherWord == ['to','the', 'old','man'] or otherWord == ['test'] and AnalyzeInput.currentLocation == 'courtyard':
                suffix = 'the old man, he says...'
+            #VC
+            #the Guard
+            elif otherWord == ['the', 'guard'] or otherWord == ['to', 'the', 'gaurd']:
+                suffix = 'the guard.'
+                print("Instead of providing helpful diaglogue he merely mocks you about your inpending fate.") 
+                time.sleep(3)
+                print("Afterwards, he slips what appears to be your meal through the bars. Your last, the guard mocks.") 
+                print.("Your cell is completely empty except for meal. There is guard outside the door.
+            
 
             #Alchemy 
             #SD
