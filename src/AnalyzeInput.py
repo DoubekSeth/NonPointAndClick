@@ -9,6 +9,8 @@ class AnalyzeInput(object):
     currentLocation = "Your Mansion"
     playerStrength = 5
     playerHealth = 20
+    specialization = ''
+    dust = 0
 
     def __init__(self, userTyped):
         self.text = str.lower(userTyped)
@@ -38,7 +40,7 @@ class AnalyzeInput(object):
         #SD
         #Travel
         if keyword == 'travel':
-            prefix = "You are traveling to"
+            prefix = "You are traveling to "
             otherWord = sentence[1:]
             suffix = ''
             #Locations
@@ -50,6 +52,7 @@ class AnalyzeInput(object):
             elif otherWord == ['to', 'the', 'academy', 'of', 'alchemy'] or otherWord == ['to', 'academy', 'of', 'alchemy'] or otherWord == ['to', 'the', 'academy', 'of', 'alchemy'] or otherWord == ['academy', 'of', 'alchemy']:
                 suffix = " to the Academy of Alchemy.\nThere you see a student, and the professor."
                 AnalyzeInput.currentLocation = 'academy of alchemy'
+                AnalyzeInput.specialization = 'alchemist'
             else:
                 suffix = " an incorrect place, try again."
 
@@ -97,14 +100,16 @@ class AnalyzeInput(object):
         #GJ
         #Talk
         elif keyword == 'talk':
-            prefix = ''
+            prefix = 'you are currently talking to'
             otherWord = sentence[1:]
             suffix = ''
             #NPCS
-            if otherWord == ['to','the', 'old','man'] and AnalyzeInput.currentLocation == 'courtyard':
+            #The old man
+            if otherWord == ['to','the', 'old','man'] or otherWord == ['test'] and AnalyzeInput.currentLocation == 'courtyard':
                suffix = 'the old man, he says...'
-            
-            elif otherWord == ['to','the','professor'] or otherWord == ['the','professor'] or otherWord == ['professor'] and AnalyzeInput.currentLocation == 'academy of alchemy':
+            #SD
+            #The Professor of Alchemy
+            elif otherWord == ['the', 'professor'] or otherWord == ['professor'] or otherWord == ['to','the','professor'] and AnalyzeInput.currentLocation == 'academy of alchemy' and AnalyzeInput.specialization == 'alchemist':
                 print("Why hello there boy, are you here to learn about the magical world of Alchemy?")
                 time.sleep(3)
                 print("Of course you do, why else would you be here.")
@@ -116,9 +121,30 @@ class AnalyzeInput(object):
                 print("Simply using the command 'transmute' on a pile of covalent dust will turn it into whatever you want")
                 time.sleep(3)
                 print("Try it now, transmute this dust into a rock")
-                inventory.addItem(Inventory.Item('dust', 0, 0, 2, 'other'))
-                print("Simply type: 'transmute into a rock'")
-                suffix = ''
+                AnalyzeInput.dust = 2
+                time.sleep(3)
+                print("Simply type: 'transmute rock'")
+                time.sleep(3)
+                prefix = 'Once you are done doing that talk '
+                suffix = 'to one of my students to find out more about alchemy'
+            #SD
+            #The
+            elif otherWord == ['the', 'student'] or otherWord == ['student'] or otherWord == ['to','the','student'] and AnalyzeInput.currentLocation == 'academy of alchemy':
+                print("If you haven't already I would make sure to talk to the professor.")
+                time.sleep(3)
+                print("Every student of alchemy needs an alchemical codex.")
+                time.sleep(3)
+                print("Here I have an extra, take it.")
+                time.sleep(3)
+                print("This will tell you the amount of dust you need for a certain type and weight of the material.")
+                time.sleep(3)
+                print("There are some extra sections in it, but they need to be decoded before they can be used.")
+                time.sleep(3)
+                print("The only section I have decoded is the materials section ('codex materials').")
+                time.sleep(3)
+                print("I heard they are doing a potion seminar over at apothecary, you should head there.")
+                prefix = "She hands you the codex"
+                suffix = ""
                 
             else:
               prefix = "you used an incorrect format or talked to something you can't, please try again."
@@ -169,13 +195,20 @@ class AnalyzeInput(object):
         #SD
         #Transmute
         elif keyword == 'transmute':
-            prefix = 'You just transmuted'
+            prefix = 'You just transmuted '
             otherWord = sentence[1:]
             suffix = ''
             if otherWord == ['into', 'a', 'rock'] or ['into', 'rock'] or ['a','rock'] or ['rock']:
                 weight = 2
-                inventory.backpack.item.dust.weight = inventory.backpack.item.dust.weight - weight
-                print(inventory.backpack.item.dust.weight)
+                if (AnalyzeInput.dust - weight) < 0:
+                    prefix = "You don't have enough dust to transmute "
+                else:
+                    AnalyzeInput.dust -= weight
+                    print("You current have " + str(AnalyzeInput.dust) + " grams of dust left")
+                    inventory.addItem(Inventory.Item('Rock', '4', '0', '4', 'Rock'))
+                suffix = 'a rock'
+
+                
         #They Goofed        
         else:
             prefix = "You used an incorrect keyword"

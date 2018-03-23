@@ -35,4 +35,3 @@ class Objects(object):
         print( "        ()    "   )
         print( "        ()    "   )
         print( "       (  ) "     )
-        

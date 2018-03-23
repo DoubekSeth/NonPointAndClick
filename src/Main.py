@@ -4,18 +4,20 @@ import AnalyzeInput
 print("Welcome to the world of Non-Point and click")
 #name = input("What would you like to be called: ")
 #print("My name is %s" % (name)) Just here as a template for what you can do
-def occupationChooser():
-    occupation = input("Would you like to an alchemist, xxxx, or xxxx: ")
-    str.lower(occupation)
-    if occupation == 'alchemist':
+'''
+def specializationChooser():
+    specialization = input("Would you like to an alchemist, xxxx, or xxxx: ")
+    str.lower(specialization)
+    if specialization == 'alchemist':
         print("Alchemists specialize in using potions and creating objects.\nAre you sure you want to be an alchemist?")
         choice = str.lower(input("Yes/No: "))
         if choice == 'yes':
-            occupation = 'alchemist'
+            specialization = 'alchemist'
             print("To begin you adventure, travel to the Academy of Alchemy")
         else:
-            occupationChooser()
-occupationChooser()
+            specializationChooser()
+specialaztionChooser()
+'''
 
 #SD
 #This makes it run the analyze keyword after each sentence typed
@@ -29,10 +31,3 @@ def analyzeIt():
     else:
        analyzeIt()
 analyzeIt()
-
-
-
-
-
-
-
