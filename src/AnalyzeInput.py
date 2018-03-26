@@ -11,6 +11,8 @@ class AnalyzeInput(object):
     playerHealth = 20
     specialization = ''
     dust = 0
+    talkedToProf = 0
+    locationInfo = "This is the starting spot, try to travel to one of the class specific locations"
 
     def __init__(self, userTyped):
         self.text = str.lower(userTyped)
@@ -51,7 +53,7 @@ class AnalyzeInput(object):
                 AnalyzeInput.currentLocation = 'courtyard'
             #VC
             #High Security prison
-            elif otherWord == ['the', 'high', 'security', 'prison'] or otherWord == ['high', 'security', 'prison']:
+            elif otherWord == ['the', 'high', 'security', 'prison'] or otherWord == ['high', 'security', 'prison'] or otherWord == ['to', 'the', 'high', 'security','prison']:
                 suffix = " to the high security prison. You are imprisoned becasuse you were caught stealing from high ranking nobles You are due to stand trial tommorow where you will most likely be found guilty and be excuted. /n You are currently languishing in your cell. There is a guard outside the door while your cell is completely bare."
                 AnalyzeInput.currentLocation = 'high security prison'
                 AnalyzeInput.specialization = 'Rogue'
@@ -60,6 +62,7 @@ class AnalyzeInput(object):
             #The Academy of Alchemy
             elif otherWord == ['to', 'the', 'academy', 'of', 'alchemy'] or otherWord == ['to', 'academy', 'of', 'alchemy'] or otherWord == ['to', 'the', 'academy', 'of', 'alchemy'] or otherWord == ['academy', 'of', 'alchemy']:
                 suffix = " to the Academy of Alchemy.\nThere you see a student, and the professor."
+                AnalyzeInput.locationInfo = "There is a professor and a student."
                 AnalyzeInput.currentLocation = 'academy of alchemy'
                 AnalyzeInput.specialization = 'alchemist'
             else:
@@ -74,6 +77,7 @@ class AnalyzeInput(object):
             otherWord = sentence[1:]
             suffix = ''
             suffix = AnalyzeInput.currentLocation
+            print(AnalyzeInput.locationInfo)
             
         #SD           
         #Attack
@@ -118,6 +122,8 @@ class AnalyzeInput(object):
             #The old man
             if otherWord == ['to','the', 'old','man'] or otherWord == ['test'] and AnalyzeInput.currentLocation == 'courtyard':
                suffix = 'the old man, he says...'
+
+            #Rogue
             #VC
             #the Guard
             elif otherWord == ['the', 'guard'] or otherWord == ['to', 'the', 'gaurd']:
@@ -125,10 +131,12 @@ class AnalyzeInput(object):
                 print("Instead of providing helpful diaglogue he merely mocks you about your inpending fate.") 
                 time.sleep(3)
                 print("Afterwards, he slips what appears to be your meal through the bars. Your last, the guard mocks.") 
-                print.("Your cell is completely empty except for meal. There is guard outside the door.
+                print("Your cell is completely empty except for meal. There is guard outside the door.")
             
 
-            #Alchemy 
+
+
+            #Alchemist 
             #SD
             #The Professor of Alchemy
             elif otherWord == ['the', 'professor'] or otherWord == ['professor'] or otherWord == ['to','the','professor'] and AnalyzeInput.currentLocation == 'academy of alchemy' and AnalyzeInput.specialization == 'alchemist':
@@ -149,24 +157,48 @@ class AnalyzeInput(object):
                 time.sleep(3)
                 prefix = 'Once you are done doing that talk '
                 suffix = 'to one of my students to find out more about alchemy'
+                AnalyzeInput.talkedToProf = 1
+                
             #SD
-            #The
+            #The Student
             elif otherWord == ['the', 'student'] or otherWord == ['student'] or otherWord == ['to','the','student'] and AnalyzeInput.currentLocation == 'academy of alchemy':
-                print("If you haven't already I would make sure to talk to the professor.")
-                time.sleep(3)
-                print("Every student of alchemy needs an alchemical codex.")
-                time.sleep(3)
-                print("Here I have an extra, take it.")
-                time.sleep(3)
-                print("This will tell you the amount of dust you need for a certain type and weight of the material.")
-                time.sleep(3)
-                print("There are some extra sections in it, but they need to be decoded before they can be used.")
-                time.sleep(3)
-                print("The only section I have decoded is the materials section ('codex materials').")
-                time.sleep(3)
-                print("I heard they are doing a potion seminar over at apothecary, you should head there.")
-                prefix = "She hands you the codex"
-                suffix = ""
+                if AnalyzeInput.talkedToProf == 0:
+                    prefix = "If you haven't already I would make sure to talk to the professor."
+                else:
+                    print("You must be new here")
+                    time.sleep(3)
+                    print("Every student of alchemy needs an alchemical codex.")
+                    time.sleep(3)
+                    print("Here I have an extra, take it.")
+                    time.sleep(3)
+                    print("This will tell you the amount of dust you need for a certain type and weight of the material.")
+                    time.sleep(3)
+                    print("There are some extra sections in it, but they need to be decoded before they can be used.")
+                    time.sleep(3)
+                    print("The only section I have decoded is the materials section ('codex materials').")
+                    time.sleep(3)
+                    print("Try to go to the materials section.")
+                    time.sleep(1)
+                    def codexCheck():
+                        check = str.lower(input("You: "))
+                        if check == 'codex material' or check == 'codex materials':
+                            print("Great job!")
+                        else:
+                            print("Try again")
+                            codexCheck()
+                    codexCheck()
+                    time.sleep(1)
+                    print("I heard they are doing a potion seminar over at apoth...")
+                    time.sleep(2)
+                    print("What was that?")
+                    time.sleep(3)
+                    explosion = Objects.Objects()
+                    explosion.displayExplosion()
+                    time.sleep(5)
+                    prefix = "You wake in a new place, take a look around with the 'location' keyword"
+                    AnalyzeInput.currentLocation = "bunker"
+                    AnalyzeInput.locationInfo = "You are on a cot in the middle of a bunker.\nThere are others all around you.\nYou try and get up but find yourself too weak.\nYou see a potion next to your bed.\nType the 'use' command on the potion."
+                    suffix = ""
                 
             else:
               prefix = "you used an incorrect format or talked to something you can't, please try again."
@@ -220,7 +252,7 @@ class AnalyzeInput(object):
             prefix = 'You just transmuted '
             otherWord = sentence[1:]
             suffix = ''
-            if otherWord == ['into', 'a', 'rock'] or ['into', 'rock'] or ['a','rock'] or ['rock']:
+            if otherWord == ['into', 'a', 'rock'] or otherWord == ['into', 'rock'] or otherWord == ['a','rock'] or otherWord == ['rock']:
                 weight = 2
                 if (AnalyzeInput.dust - weight) < 0:
                     prefix = "You don't have enough dust to transmute "

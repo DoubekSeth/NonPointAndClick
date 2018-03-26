@@ -1,4 +1,5 @@
 #GJ
+import AnalyzeInput
 class Item(object):
     def __init__(self, name, attack, armor, weight, level):
         self.name = name
@@ -16,6 +17,7 @@ class Inventory(object):
         self.backpack[item.name] = item
 
     def printItems(self):
+        specialization = AnalyzeInput.AnalyzeInput("")
         #SD, Stole this off of stack overflow, link: https://stackoverflow.com/questions/39032720/formatting-lists-into-columns-of-a-table-output-python-3
         #I believe it's the second answer as of 3/20/18
         names = []
@@ -38,3 +40,5 @@ class Inventory(object):
             print(line)
             if i == 0:
                 print('-' * len(line))
+        if specialization.specialization == 'alchemist':
+            print("You currently have " + str(specialization.dust) + " grams of dust left")

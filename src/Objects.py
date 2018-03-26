@@ -52,3 +52,16 @@ class Objects(object):
         print(":                         |")
         print(":                         |")
         print(":-------------------------|")
+        
+    def displayExplosion(self):
+        print("      _.-^^---....,,__         ")
+        print("  _--                  --_     ")
+        print(" <                        >)   ")
+        print(" |                         |   ")
+        print("  \._                   _./    ")
+        print("     ```--. . , ; .--'''       ")
+        print("           | |   |             ")
+        print("        .-=||  | |=-.          ")
+        print("        `-=#$%&%$#=-'          ")
+        print("           | ;  :|             ")
+        print("  _____.,-#%&$@%#&#~,._____    ")
