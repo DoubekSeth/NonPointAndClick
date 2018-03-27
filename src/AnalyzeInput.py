@@ -45,6 +45,7 @@ class AnalyzeInput(object):
             prefix = "You are traveling to "
             otherWord = sentence[1:]
             suffix = ''
+        #VC
             #Locations
             #The Courtyard
             currentLocation = ''
@@ -57,6 +58,19 @@ class AnalyzeInput(object):
                 suffix = " to the high security prison. You are imprisoned becasuse you were caught stealing from high ranking nobles You are due to stand trial tommorow where you will most likely be found guilty and be excuted. /n You are currently languishing in your cell. There is a guard outside the door while your cell is completely bare."
                 AnalyzeInput.currentLocation = 'high security prison'
                 AnalyzeInput.specialization = 'Rogue'
+                          #the forest
+            elif otherWord == ['the', 'forest']:
+                suffix = "to the forest. YOu are being persued by the guards. You flee into the forest\n there are 2 paths one to the left and one to the right.Travel through one of the paths."
+                AnalyzeInput.currentLocation = 'forest'
+            #the right path
+            elif otherWord == ['the', 'right', 'path']:
+                suffix = "to the right path. The right path is overgrown with weeds and thorns, and looks unkept. This works to your advantage as it slows the gaurds horses and allows you to slip away."
+                AnalyzeInput.currentLocation = 'right path'
+            #the left path
+            elif otherWord == ['the', 'left', 'path']:
+                suffix = "to the left path. As luck would have it, you run into a returnin patrol of soldiers. You are not even given a trial as you are executed on the roadside."
+                AnalyzeInput.currentLocation = 'left path'
+                playerHealth = 0
 
             #Alchemy
             #The Academy of Alchemy
@@ -79,7 +93,7 @@ class AnalyzeInput(object):
             suffix = AnalyzeInput.currentLocation
             print(AnalyzeInput.locationInfo)
             
-        #SD           
+        #VC SD          
         #Attack
         elif keyword == 'attack':
             prefix = "You have killed "
@@ -233,17 +247,19 @@ class AnalyzeInput(object):
                 suffix = ' an entity that does not exist or is in another location, try again'
         #SD
         #Help
+        #VC updated 3/27/18
+        #Help
         elif keyword == 'help':
             prefix = 'There are more class specific commands, '
             otherWord = sentence[1:]
-            suffix = 'go back and talk to the people to figure these out'
-            print("Travel - Is used to travel to a new location")
-            print("Location - Displays the current location and any other detail")
-            print("Attack - Is used to attack a person")
-            print("Examine - Displays an item, location, or person")
-            print("Talk - Is used to talk to people")
-            print("Inventory - Checks your current inventory")
-            print("Collect - Picks up an item in the world")
+            suffix = 'go back and talk to the people to figure these out in detail or just type help to pull up a list of kewords'
+            print("Travel - Use this keyword to travel to a new location")
+            print("Location - This keyword displays the current location and any other detail")
+            print("Attack - Use this keyword to attack a person")
+            print("Examine - This keyword displays an item, location, or person. You can also use this to view the ascci image of an item")
+            print("Talk - This keyword is used to talk to people")
+            print("Inventory - This keyword checks your current inventory")
+            print("Collect - This keyword picks up an item in the world")
             print("Remeber not to put anything before these key words, and try the objects complete noun when doing something")
 
         #SD
