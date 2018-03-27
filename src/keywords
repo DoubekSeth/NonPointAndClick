@@ -1,5 +1,7 @@
 #Keywords 
 
+#VC
+
 'attack' - this keyword allows the user to attack the target
   +'run' - this keyword will allow a user to flee from the battle
   +'swing' - this keyword will trigger the player's attack
