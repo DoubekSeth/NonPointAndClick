@@ -1,6 +1,6 @@
 it might be hard to have an inventory in the game. My idea is that when you reach a certain area the game automatically
 assumes you have the item in your possesion. That way if the inventory is too hard to code then this would be a good
 work around.
+problem solved
+https://stackoverflow.com/questions/39032720/formatting-lists-into-columns-of-a-table-output-python-3
 
-That could work if we don't want to do an inventory
-Originally I thought that we could use the items in the inventory for attack stats, how would we handle that -SD
