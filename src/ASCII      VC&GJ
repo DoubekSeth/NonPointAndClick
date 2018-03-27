@@ -1,6 +1,7 @@
 #ASCII ART
 - this is what will appear when the keyword 'examine' is used
 - a description of the item will be printed under the image
+
 # Chest VC
 
 print("                    ._______________________________. ")
@@ -46,7 +47,7 @@ print( "sword called "oof"")
 print("")
 
 
-#Shield
+#Shield VC
 
 print("")
 print("          _________________________________  ")
