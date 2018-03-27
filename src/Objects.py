@@ -1,9 +1,11 @@
-#SD & GJ
+#SD & GJ & VC
 class Objects(object):
+    
     
 
     #Images
     #Sword of Oof
+    #VC
     def displaySwordOfOof(self):
         print(                    )
         print(                    )
@@ -28,7 +30,64 @@ class Objects(object):
         print( "        ()    "   )
         print( "        ()    "   )
         print( "       (  ) "     )
+    #VC
+    def displayChest(self):
+        print("                    ._______________________________. ")
+        print("                    ::                             ::")
+        print("                    ::                             ::")
+        print("                    ::                             ::")
+        print("                    ::            _____            :: ")
+        print("                    ::===========:  0   : =========::")        
+        print("                    |  _________  | : |  __________ |")
+        print("                    |    ________  \ /  __________  |")
+        print("                    | ___________________________   |")
+        print("                    |     ____________________      |")
+        print("                    |===============================|")
 
+
+    def displayShield(self):
+       print("          _________________________________  ")
+       print("         |  _____________________________  |  ")
+       print("         | |                             | | ")
+       print("         | |                             | |")
+       print("         | |                             | |")
+       print("         | |                             | |")
+       print("          | |                           | | ")
+       print("          | |                           | | ")
+       print("          | |                           | | ")
+       print("          | |                           | | ")
+       print("           | |                         | | ")
+       print("            | |                       | | ")
+       print("            | |                       | | ")
+       print("             | |                     | | ")
+       print("              | |                   | | ")
+       print("              | |                   | | ")
+       print("              | |                   | | ")
+       print("               | |                 | | ")
+       print("                 | |              | | ")
+       print("                   | |          | | ")
+       print("                     | |      | | ")
+       print("                       | |  | | ")
+            
+#VC
+   def displaySignpost(self):
+        print(                                     )
+        print(                                     )
+        print(     " ____________________________ " )
+        print(     "|       ~~~~~~~~~~~~~        |")
+        print(     "|         SIGN POST          |")
+        print(     "|       ~~~~~~~~~~~~~        |")
+        print(     "|    XXX XXXXXXXXXXX XX      |")
+        print(     "|     XXXXXXX XXX XXX XX     |")
+        print(     "|     XX XXXX XXXXX XXX      |")
+        print(     "|____________________________|")
+        print(     "             | |              ")
+        print(     "             | |              ")
+        print(     "             | |              ")
+        print(     "             | |              ")
+        print(     "             | |              ")
+  
+    
     def displayCodexMaterials(self):
         print(":-------------------------|")
         print(":        Materials        |")
