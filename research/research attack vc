@@ -1,3 +1,22 @@
+working(?) attack keyword
+#Attack
+        elif keyword == 'attack':
+            prefix = "You have killed "
+            otherWord = sentence[1:]
+            suffix = ''
+            #NPCS
+            oldMan = 1
+            if otherWord == ['the', 'old',  'man'] and oldMan == 1:
+                suffix = " the old man, RIP"
+                enemyStrength = 2
+                enemyHealth = 10
+                while AnalyzeInput.playerHealth > 0 and enemyHealth > 0:
+                    enemyHealth = enemyHealth - AnalyzeInput.playerStrength
+                    AnalyzeInput.playerHealth = AnalyzeInput.playerHealth - enemyStrength
+                print("Current health: " + str(AnalyzeInput.playerHealth))
+                oldMan = 0
+            else:
+                suffix = "an incorrect entity, try again"
 
 
 This is a attack funciton 
