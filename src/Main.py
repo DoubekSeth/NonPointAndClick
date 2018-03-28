@@ -4,7 +4,8 @@ import AnalyzeInput
 print("Welcome to the world of Non-Point and click")
 #name = input("What would you like to be called: ")
 #print("My name is %s" % (name)) Just here as a template for what you can do
-'''
+
+#SD Specialization chooser
 def specializationChooser():
     specialization = input("Would you like to be an Alchemist, Rogue, or xxxx: ")
     specialization = str.lower(specialization)
@@ -28,7 +29,7 @@ def specializationChooser():
         print("You typed something in wrong, try again")
         specializationChooser()
 specializationChooser()
-'''           
+        
 
 #SD
 #This makes it run the analyze keyword after each sentence typed
