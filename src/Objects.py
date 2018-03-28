@@ -70,22 +70,22 @@ class Objects(object):
        print("                       | |  | | ")
             
 #VC
-   def displaySignpost(self):
-        print(                                     )
-        print(                                     )
-        print(     " ____________________________ " )
-        print(     "|       ~~~~~~~~~~~~~        |")
-        print(     "|         SIGN POST          |")
-        print(     "|       ~~~~~~~~~~~~~        |")
-        print(     "|    XXX XXXXXXXXXXX XX      |")
-        print(     "|     XXXXXXX XXX XXX XX     |")
-        print(     "|     XX XXXX XXXXX XXX      |")
-        print(     "|____________________________|")
-        print(     "             | |              ")
-        print(     "             | |              ")
-        print(     "             | |              ")
-        print(     "             | |              ")
-        print(     "             | |              ")
+    def displaySignpost(self):
+       print(                                     )
+       print(                                     )
+       print(     " ____________________________ " )
+       print(     "|       ~~~~~~~~~~~~~        |")
+       print(     "|         SIGN POST          |")
+       print(     "|       ~~~~~~~~~~~~~        |")
+       print(     "|    XXX XXXXXXXXXXX XX      |")
+       print(     "|     XXXXXXX XXX XXX XX     |")
+       print(     "|     XX XXXX XXXXX XXX      |")
+       print(     "|____________________________|")
+       print(     "             | |              ")
+       print(     "             | |              ")
+       print(     "             | |              ")
+       print(     "             | |              ")
+       print(     "             | |              ")
   
     
     def displayCodexMaterials(self):

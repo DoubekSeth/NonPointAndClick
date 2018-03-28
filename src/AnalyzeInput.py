@@ -14,6 +14,9 @@ class AnalyzeInput(object):
     talkedToProf = 0
     locationInfo = "This is the starting spot, try to travel to one of the class specific locations"
 
+    #All the dead and alive characters
+    oldMan = 1
+
     def __init__(self, userTyped):
         self.text = str.lower(userTyped)
 
@@ -70,7 +73,7 @@ class AnalyzeInput(object):
             elif otherWord == ['the', 'left', 'path']:
                 suffix = "to the left path. As luck would have it, you run into a returnin patrol of soldiers. You are not even given a trial as you are executed on the roadside."
                 AnalyzeInput.currentLocation = 'left path'
-                playerHealth = 0
+                AnalyzeInput.playerHealth = 0
 
             #Alchemy
             #The Academy of Alchemy
@@ -79,6 +82,20 @@ class AnalyzeInput(object):
                 AnalyzeInput.locationInfo = "There is a professor and a student."
                 AnalyzeInput.currentLocation = 'academy of alchemy'
                 AnalyzeInput.specialization = 'alchemist'
+            #Outside the Bunker
+            elif otherWord == ['to', 'outside','the','bunker'] or otherWord == ['outside','the','bunker']:
+                suffix = "the outside of the bunker"
+                print("You squint your eyes from the oppressive light of the sun")
+                time.sleep(3)
+                print("As they adjust you start to take in the world around you")
+                time.sleep(3)
+                print("Very little is left from the blast, the whole place seems to be desolate")
+                time.sleep(3)
+                print("You notice a 'small town' on the outside of the blast radius")
+                time.sleep(3)
+                print("It doesn't look like much, but it's a start")
+                prefix = 'You should'
+                suffix = ' head there'
             else:
                 suffix = " an incorrect place, try again."
 
@@ -100,18 +117,23 @@ class AnalyzeInput(object):
             otherWord = sentence[1:]
             suffix = ''
             #NPCS
-            oldMan = 1
-            if otherWord == ['the', 'old',  'man'] and oldMan == 1:
+            if otherWord == ['the', 'old',  'man'] and AnalyzeInput.oldMan == 1:
                 suffix = " the old man, RIP"
                 enemyStrength = 2
                 enemyHealth = 10
-                while AnalyzeInput.playerHealth > 0 and enemyHealth > 0:
-                    enemyHealth = enemyHealth - AnalyzeInput.playerStrength
-                    AnalyzeInput.playerHealth = AnalyzeInput.playerHealth - enemyStrength
-                print("Current health: " + str(AnalyzeInput.playerHealth))
-                oldMan = 0
+                print("Health: " + str(AnalyzeInput.playerHealth) + "         Strength: " + str(AnalyzeInput.playerStrength))
+                print("Enemy Health: " + str(enemyHealth) + "   Enemy Strength: " + str(enemyStrength))
+                fight = str.lower(input("Are you sure you want to fight (Yes/No): "))
+                if fight == 'yes' or fight == 'y':
+                    while AnalyzeInput.playerHealth > 0 and enemyHealth > 0:
+                        enemyHealth = enemyHealth - AnalyzeInput.playerStrength
+                        AnalyzeInput.playerHealth = AnalyzeInput.playerHealth - enemyStrength
+                    print("Current health: " + str(AnalyzeInput.playerHealth))
+                    AnalyzeInput.oldMan = 0
+                else:
+                    suffix = 'nobody and ran away instead'
             else:
-                suffix = "an incorrect entity, try again"
+                suffix = "an incorrect entity or someone who is already dead, try again"
         #SD
         #Examine
         elif keyword == 'examine':
@@ -213,7 +235,7 @@ class AnalyzeInput(object):
                     AnalyzeInput.currentLocation = "bunker"
                     AnalyzeInput.locationInfo = "You are on a cot in the middle of a bunker.\nThere are others all around you.\nYou try and get up but find yourself too weak.\nYou see a potion next to your bed.\nType the 'use' command on the potion."
                     suffix = ""
-                
+                    
             else:
               prefix = "you used an incorrect format or talked to something you can't, please try again."
             
@@ -288,10 +310,22 @@ class AnalyzeInput(object):
                 materials = Objects.Objects()
                 materials.displayCodexMaterials()
                 suffix = '1'
-                
-                
+            else:
+                prefix = 'You have entered an incorrect page, try again'
+                suffix = ''
 
-                
+        #SD
+        #Use
+        elif keyword == 'use':
+            prefix = ''
+            otherWord = sentence[1:]
+            suffix = ''
+            if otherWord == ['potion'] or otherWord == ['the', 'potion'] or otherWord == ['a', 'potion'] and AnalyzeInput.currentLocation == 'bunker':
+                AnalyzeInput.playerHealth = 20
+                prefix = 'You have just gained'
+                suffix = ' 20 life'
+                print("You're feeling so good you think you will go and explore 'outside the bunker'")
+        
         #They Goofed        
         else:
             prefix = "You used an incorrect keyword"
