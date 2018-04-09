@@ -1,6 +1,7 @@
 import Inventory
 import Objects
 import time
+import os
 
 inventory = Inventory.Inventory()
 
@@ -75,6 +76,9 @@ class AnalyzeInput(object):
                 AnalyzeInput.currentLocation = 'left path'
                 AnalyzeInput.playerHealth = 0
 
+
+                
+
             #Alchemy
             #The Academy of Alchemy
             elif otherWord == ['to', 'the', 'academy', 'of', 'alchemy'] or otherWord == ['to', 'academy', 'of', 'alchemy'] or otherWord == ['to', 'the', 'academy', 'of', 'alchemy'] or otherWord == ['academy', 'of', 'alchemy']:
@@ -82,9 +86,9 @@ class AnalyzeInput(object):
                 AnalyzeInput.locationInfo = "There is a professor and a student."
                 AnalyzeInput.currentLocation = 'academy of alchemy'
                 AnalyzeInput.specialization = 'alchemist'
+                
             #Outside the Bunker
             elif otherWord == ['to', 'outside','the','bunker'] or otherWord == ['outside','the','bunker']:
-                suffix = "the outside of the bunker"
                 print("You squint your eyes from the oppressive light of the sun")
                 time.sleep(3)
                 print("As they adjust you start to take in the world around you")
@@ -94,17 +98,28 @@ class AnalyzeInput(object):
                 print("You notice a 'small town' on the outside of the blast radius")
                 time.sleep(3)
                 print("It doesn't look like much, but it's a start")
+                time.sleep(3)
                 prefix = 'You should'
                 suffix = ' head there'
+                AnalyzeInput.currentLocation = "outside the bunker"
+
+            #Small Town
+            elif otherWord == ['to', 'the', 'small', 'town'] or otherWord == ['small', 'town'] or otherWord == ['to','small', 'town'] or otherWord == ['the','small', 'town']:
+                print("People:\n    Merchant\n    Woman")
+                print("Places:\n    Library\n    Inn")
+                prefix = ""
+                suffix = ""
+                AnalyzeInput.currentLocation = "small town"
+                AnalyzeInput.locationInfo = "People:\n    Merchant\n    Woman\nPlaces:\n    Library\n    Inn"
+                
             else:
                 suffix = " an incorrect place, try again."
-
         
 
         #SD
         #Location
         elif keyword == 'location':
-            prefix = "You are currently in "
+            prefix = "You are currently in the "
             otherWord = sentence[1:]
             suffix = ''
             suffix = AnalyzeInput.currentLocation
@@ -235,6 +250,15 @@ class AnalyzeInput(object):
                     AnalyzeInput.currentLocation = "bunker"
                     AnalyzeInput.locationInfo = "You are on a cot in the middle of a bunker.\nThere are others all around you.\nYou try and get up but find yourself too weak.\nYou see a potion next to your bed.\nType the 'use' command on the potion."
                     suffix = ""
+
+            #The Merchant in small town
+            elif otherWord == ['the', 'merchant'] or otherWord == ['merchant'] or otherWord == ['to','the','merchant'] and AnalyzeInput.currentLocation == 'small town':
+                print("What can I do for you?")
+                print("| Talk | Buy | Sell |")
+                response = str.lower(input("You: "))
+                if response == 'talk':
+                    print("What would you like to talk about")
+                    print("| Who are you | How do I buy stuff | How do I get money |")
                     
             else:
               prefix = "you used an incorrect format or talked to something you can't, please try again."
@@ -325,7 +349,43 @@ class AnalyzeInput(object):
                 prefix = 'You have just gained'
                 suffix = ' 20 life'
                 print("You're feeling so good you think you will go and explore 'outside the bunker'")
-        
+
+        #SD
+        #Save
+        elif keyword == 'save':
+            prefix = 'You have just saved!'
+            otherWord = sentence[1:]
+            suffix = ''
+            os.chdir("/Users/9518588/10th Grade/Programming/Term 3/Non Point and Click/Save/")
+            #Current Location
+            save = open("currentLocation.txt", "w+")
+            save.write(str(AnalyzeInput.currentLocation))
+            save.close()
+            #Player Strength
+            save = open("playerStrength.txt", "w+")
+            save.write(str(AnalyzeInput.playerStrength))
+            save.close()
+            #Player Health
+            save = open("playerHealth.txt", "w+")
+            save.write(str(AnalyzeInput.playerHealth))
+            save.close()
+            #Specialization
+            save = open("specialization.txt", "w+")
+            save.write(str(AnalyzeInput.specialization))
+            save.close()
+            #Dust
+            save = open("dust.txt", "w+")
+            save.write(str(AnalyzeInput.dust))
+            save.close()
+            #Talked To Prof
+            save = open("talkedToProf.txt", "w+")
+            save.write(str(AnalyzeInput.talkedToProf))
+            save.close()
+            #Location Info
+            save = open("locationInfo.txt", "w+")
+            save.write(str(AnalyzeInput.locationInfo))
+            save.close()
+
         #They Goofed        
         else:
             prefix = "You used an incorrect keyword"
