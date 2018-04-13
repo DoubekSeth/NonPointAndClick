@@ -385,6 +385,12 @@ class AnalyzeInput(object):
             save = open("locationInfo.txt", "w+")
             save.write(str(AnalyzeInput.locationInfo))
             save.close()
+            #Items
+            save = open("items.txt", "w+")
+            save.write(str(inventory.backpack))
+            save.close()
+
+        #Load
 
         #They Goofed        
         else:
